@@ -1,0 +1,30 @@
+body{
+	height: 100%;
+	overflow: hidden;
+	background: lightgray;
+}
+
+html{
+	height: 100%;
+}
+
+.sticker_body{
+	width: 120px;
+	height: 90px;
+	background: white;
+	border: 2px solid black;
+	position: absolute;
+}
+
+.sticker_button{
+	width: 15%;
+	height: 25%;
+	float: right;
+}
+
+.sticker_input{
+	width: 80%;
+	margin-left: 10%;
+	margin-top: 15%;
+	height: 20%;
+}
