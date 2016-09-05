@@ -4,7 +4,11 @@ var sticker = (function(){
 	activeSticker,
 	zIndexCount = 1,
 	shiftX,
-	shiftY;
+	shiftY,
+	divSticker = "\
+		<button class='sticker_button'>x</button>\
+		<input class='sticker_input' />\
+	";
 
 	document.addEventListener('DOMContentLoaded', init, false);
 	
@@ -21,14 +25,8 @@ var sticker = (function(){
 		if(e.target == desktop)
 		{
 			var temp_sticker = document.createElement('div');
-			var temp_button = document.createElement('button');
-			temp_button.textContent = 'x';
-			var temp_input = document.createElement('input');
-			temp_sticker.appendChild(temp_button);
-			temp_sticker.appendChild(temp_input);
 			temp_sticker.className = 'sticker_body';
-			temp_button.className = 'sticker_button';
-			temp_input.className = 'sticker_input';
+			temp_sticker.innerHTML = divSticker;
 			temp_sticker.ondragstart = function(){
 				return false;
 			};
