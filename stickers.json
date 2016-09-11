@@ -1,0 +1,22 @@
+[
+	{
+		"value": "Loaded",
+		"left": "50px",
+		"top": "50px"
+	},
+	{
+		"value": "from",
+		"left": "200px",
+		"top": "150px"
+	},
+	{
+		"value": "file",
+		"left": "350px",
+		"top": "250px"
+	},
+	{
+		"value": "stickers.json",
+		"left": "500px",
+		"top": "350px"
+	}
+]

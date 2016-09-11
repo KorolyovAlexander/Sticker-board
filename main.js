@@ -18,18 +18,28 @@ var sticker = (function(){
 		desktop.addEventListener('mousedown', mousedown, false);
 		document.addEventListener('mousemove', mousemove, false);
 		desktop.addEventListener('mouseup', mouseup, false);
-		desktop.addEventListener('click', deleteSticker, false);		
+		desktop.addEventListener('click', deleteSticker, false);
+		getData();		
+	}
+
+	function createSticker(){
+		var temp_sticker = document.createElement('div');
+		temp_sticker.className = 'sticker_body';
+		temp_sticker.innerHTML = divSticker;
+		temp_sticker.ondragstart = function(){
+			return false;
+		};
+		temp_sticker.style.left = '0px';
+    		temp_sticker.style.top = '0px';		
+		temp_sticker.style.zIndex = zIndexCount++;
+		return temp_sticker;
 	}
 
 	function addSticker(e){
 		if(e.target == desktop)
 		{
-			var temp_sticker = document.createElement('div');
-			temp_sticker.className = 'sticker_body';
-			temp_sticker.innerHTML = divSticker;
-			temp_sticker.ondragstart = function(){
-				return false;
-			};
+			var temp_sticker = createSticker();
+			
 			desktop.appendChild(temp_sticker);
 			temp_sticker.style.left = e.pageX - temp_sticker.offsetWidth / 2 + 'px';
     			temp_sticker.style.top = e.pageY - temp_sticker.offsetHeight / 2 + 'px';
@@ -61,6 +71,30 @@ var sticker = (function(){
 		var activeElement = e.target;
 		if(activeElement.className == 'sticker_button'){
 			activeElement.parentNode.remove();
+		}
+	}
+	
+	function getData(){
+		var xhr = new XMLHttpRequest();
+
+		xhr.open("GET", "stickers.json", true);
+		xhr.responseType = "json";
+		xhr.onload = function(data){
+			if(xhr.readyState == 4){
+				insertData(xhr.response);
+			}
+		}
+		xhr.send(null);
+	}
+	
+	function insertData(data){
+		for(var i=0; i<data.length; ++i){
+			var temp_sticker = createSticker();
+			
+			temp_sticker.children[1].value = data[i].value;
+			desktop.appendChild(temp_sticker);
+			temp_sticker.style.left = data[i].left;
+    			temp_sticker.style.top = data[i].top;
 		}
 	}
 
